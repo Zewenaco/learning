@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: grpcclient-product
+    dependency:
+      grpcserver-product:
+        address: ${GRPCSERVER_PRODUCT_ADDRESS:static://localhost:9090}
+
+server:
+  port: ${APP_PORT:8081}
+
+grpc:
+  client:
+    product-service:
+      address: "${spring.application.dependency.grpcserver-product.address}"
+      negotiation-type: plaintext
+      default-load-balancing-policy: "round_robin"

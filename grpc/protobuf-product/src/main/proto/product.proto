@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.zewenaco.grpc;
+
+option java_package = "com.zewenaco.grpc.infrastructure.product.in.protobuf";
+option java_multiple_files = true;
+
+message ProductResponse {
+  int64 id = 1;
+  string name = 2;
+}
+
+message ProductRequest {
+  int64 id = 1;
+}
+
+service ProductService {
+  rpc getProduct(ProductRequest) returns (ProductResponse) {}
+}

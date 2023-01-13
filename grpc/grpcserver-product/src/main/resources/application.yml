@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: grpcserver-product
+
+server:
+  port: ${APP_PORT:8082}
+
+grpc:
+  server:
+    port: ${GRPC_PORT:9090}
