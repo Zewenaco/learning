@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpcserver-product
+  namespace: n-anderjvila-learning
+  labels:
+    name: API
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: grpcserver-product
+  template:
+    metadata:
+      labels:
+        app: grpcserver-product
+    spec:
+      containers:
+        - name: grpcserver-product
+          image: anderjvila/grpcserver-product:v1.0.0
+          imagePullPolicy: Never
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 250m
+            limits:
+              memory: 1024Mi
+              cpu: 1024m
+          env:
+            - name: APP_PORT
+              value: "8080"
+            - name: GRPC_PORT
+              value: "9090"
+          ports:
+            - containerPort: 8080
+            - containerPort: 9090

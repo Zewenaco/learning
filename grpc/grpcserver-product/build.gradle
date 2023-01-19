@@ -21,13 +21,15 @@ repositories {
 ext {
     grpcServerStarterVersion = "2.13.1.RELEASE"
     protobufProductVersion = "1.0.0-SNAPSHOT"
+    lombokVersion = "1.18.20"
 }
 
 dependencies {
     implementation(
         "org.springframework.boot:spring-boot-starter-web",
         "com.zewenaco.grpc:protobuf-product:${protobufProductVersion}",
-        "net.devh:grpc-server-spring-boot-starter:${grpcServerStarterVersion}"
+        "net.devh:grpc-server-spring-boot-starter:${grpcServerStarterVersion}",
+        "org.projectlombok:lombok:${lombokVersion}"
     )
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
