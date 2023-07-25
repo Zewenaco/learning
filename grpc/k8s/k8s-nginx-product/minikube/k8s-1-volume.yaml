@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grpcnginx-product-nginx-server-conf
+  namespace: n-anderjvila-learning
+data:
+  default.conf: |-
+      upstream grpcservers {
+          server grpcserver-product-rpc:9090;
+      }
+
+      server {
+
+          listen 9091 http2;
+
+          location /com.zewenaco.grpc.ProductService/getProduct {
+            grpc_pass grpc://grpcservers;
+          }
+        
+      }
+---

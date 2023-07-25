@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpcnginx-product
+  namespace: n-anderjvila-learning
+  labels:
+    name: API
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpcnginx-product
+  template:
+    metadata:
+      labels:
+        app: grpcnginx-product
+    spec:
+      containers:
+        - name: xp-nginx-proxy
+          image: nginx:alpine
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 256m
+            limits:
+              memory: 512Mi
+              cpu: 512m
+          ports:
+            - name: nginx
+              containerPort: 9091
+          volumeMounts:
+          - name: vol-server-conf
+            subPath: default.conf
+            mountPath: /etc/nginx/conf.d/default.conf
+            readOnly: true
+          - name: log
+            mountPath: /var/log/nginx
+      volumes:
+      - name: vol-server-conf
+        configMap:
+          name: grpcnginx-product-nginx-server-conf
+          items:
+            - key: default.conf
+              path: default.conf
+      - name: log
+        emptyDir: {}

@@ -1,10 +1,21 @@
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: ConfigMap
 metadata:
-  name: grpcserver-product-store
+  name: grpcserver-product-nginx-server-conf
   namespace: n-anderjvila-learning
-spec:
-  accessModes: [ "ReadWriteOnce" ]
-  resources:
-    requests:
-      storage: 100Mi
+data:
+  default.conf: |-
+      upstream grpcservers {
+          server grpcserver-product:9090;
+      }
+
+      server {
+
+          listen 9091 http2;
+
+          location /com.zewenaco.grpc.ProductService/getProduct {
+            grpc_pass grpc://grpcservers;
+          }
+        
+      }
+---

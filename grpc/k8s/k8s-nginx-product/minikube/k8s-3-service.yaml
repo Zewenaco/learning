@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpcnginx-product-service
+  namespace: n-anderjvila-learning
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 9091
+      targetPort: 9091
+      nodePort: 30091
+      name: nginx
+  selector:
+    app: n-anderjvila-learning
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpcnginx-product-ip-service
+  namespace: n-anderjvila-learning
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 9091
+      name: nginx
+      targetPort: 9091
+  selector:
+    app: grpcnginx-product
