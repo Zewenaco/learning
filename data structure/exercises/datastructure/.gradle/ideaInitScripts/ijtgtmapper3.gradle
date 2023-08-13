@@ -1,6 +1,0 @@
-ext.pathMapper = [:]
-ext.pathMapper.put('C:/Program Files/JetBrains/IntelliJ IDEA 2021.2.3/lib/external-system-rt.jar', '/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2021.2.3/lib/external-system-rt.jar')
-ext.pathMapper.put('//wsl\$/Ubuntu-22.04/home/pineapple/.sdkman/candidates/java/17.0.2-open/bin/java', '/home/pineapple/.sdkman/candidates/java/17.0.2-open/bin/java')
-ext.pathMapper.put('//wsl\$/Ubuntu-22.04/home/pineapple/personal/github/zewenaco/learning/data structure/exercises/datastructure', '/home/pineapple/personal/github/zewenaco/learning/data structure/exercises/datastructure')
-ext.pathMapper.put("<<target java executable path>>", '/home/pineapple/.sdkman/candidates/java/17.0.2-open/bin/java')
-ext.mapPath = { path -> pathMapper.get(path) ?: path }
